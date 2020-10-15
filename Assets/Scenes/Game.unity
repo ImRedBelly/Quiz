@@ -634,7 +634,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1573946599}
-        m_MethodName: HellpButton
+        m_MethodName: HelpButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

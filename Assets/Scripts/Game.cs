@@ -49,7 +49,7 @@ public class Game : MonoBehaviour
         StartCoroutine(UpdateQuestions());
 
     }
-    public void HellpButton()
+    public void HelpButton()
     {
         for (int i = 0; i < button.Length; i++)
         {
