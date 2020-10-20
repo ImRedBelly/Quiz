@@ -26,7 +26,7 @@ public class Game : MonoBehaviour
     void Awake()
     {
         DontDestroyOnLoad(gameObject);
-        StartCoroutine(UpdateQuestions());
+        UpdateQuestions();
     }
     public void ButtonRight(int nummer)
     {
@@ -46,7 +46,7 @@ public class Game : MonoBehaviour
             button[nummer].image.color = Color.green;
         }
         questionList.RemoveAt(countQuestion);
-        StartCoroutine(UpdateQuestions());
+        StartCoroutine(UpdateCoroutine());
 
     }
     public void HelpButton()
@@ -64,31 +64,36 @@ public class Game : MonoBehaviour
         }
         helpButton.gameObject.SetActive(false);
     }
-    public IEnumerator UpdateQuestions()
+    public IEnumerator UpdateCoroutine()
     {
         yield return new WaitForSeconds(0.5f);
         if (questionList.Count > 0)
         {
-            countQuestion = Random.Range(0, questionList.Count);
-            question.text = questionList[countQuestion].question;
-
-            health.text = "Жизни: " + countHealth;
-
-            List<string> answers = new List<string>(questionList[countQuestion].answers);
-
-            for (int i = 0; i < questionList[countQuestion].answers.Length; i++)
-            {
-                button[i].gameObject.SetActive(true);
-                button[i].image.color = Color.white;
-                countAnswer = Random.Range(0, answers.Count);
-                answer[i].text = answers[countAnswer];
-                answers.RemoveAt(countAnswer);
-            }
+            UpdateQuestions();
         }
         else
         {
             SceneManager.LoadScene(2);
         }
         
+    }
+
+    private void UpdateQuestions()
+    {
+        countQuestion = Random.Range(0, questionList.Count);
+        question.text = questionList[countQuestion].question;
+
+        health.text = "Жизни: " + countHealth;
+
+        List<string> answers = new List<string>(questionList[countQuestion].answers);
+
+        for (int i = 0; i < questionList[countQuestion].answers.Length; i++)
+        {
+            button[i].gameObject.SetActive(true);
+            button[i].image.color = Color.white;
+            countAnswer = Random.Range(0, answers.Count);
+            answer[i].text = answers[countAnswer];
+            answers.RemoveAt(countAnswer);
+        }
     }
 }

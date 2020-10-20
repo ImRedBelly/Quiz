@@ -16,7 +16,7 @@ public class EndScene : MonoBehaviour
         int falseAnswer = gameOver.falseAnswer;
 
         trueFalseAnswer.text = "Правильных ответов: " + trueAnswer + "\nНеправельных ответов: " + falseAnswer;
-        Destroy(gameOver);
+        Destroy(gameOver.gameObject);
     }
 
 }
